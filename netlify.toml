@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  publish = "frontend/build"
+  publish = "build"
   command = "npm ci && npm run build"
 
 [[redirects]]
@@ -8,4 +8,3 @@
   to = "https://viv-deploy.onrender.com/:splat"
   status = 200
   force = true
-
