@@ -1,0 +1,722 @@
+[
+  {
+    "id": 1,
+    "title": "0g de viande rouge",
+    "points": 40,
+    "category": "Alimentation"
+  },
+  {
+    "id": 2,
+    "title": "Faire un repas 100% végétarien",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 3,
+    "title": "Acheter des fruits/légumes de saison",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 4,
+    "title": "Manger local (produits < 100km)",
+    "points": 40,
+    "category": "Alimentation"
+  },
+  {
+    "id": 5,
+    "title": "Cuisiner avec les restes",
+    "points": 10,
+    "category": "Alimentation"
+  },
+  {
+    "id": 6,
+    "title": "Ne pas gaspiller de nourriture",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 7,
+    "title": "Faire son propre pain",
+    "points": 50,
+    "category": "Alimentation"
+  },
+  {
+    "id": 8,
+    "title": "Faire un gâteau maison",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 9,
+    "title": "Acheter en vrac",
+    "points": 30,
+    "category": "Alimentation"
+  },
+  {
+    "id": 10,
+    "title": "Boire de l'eau du robinet",
+    "points": 10,
+    "category": "Alimentation"
+  },
+  {
+    "id": 11,
+    "title": "Éviter les produits transformés",
+    "points": 40,
+    "category": "Alimentation"
+  },
+  {
+    "id": 12,
+    "title": "Cuisiner une recette végétalienne",
+    "points": 40,
+    "category": "Alimentation"
+  },
+  {
+    "id": 13,
+    "title": "Préparer sa lunchbox",
+    "points": 30,
+    "category": "Alimentation"
+  },
+  {
+    "id": 14,
+    "title": "Composter ses déchets organiques",
+    "points": 50,
+    "category": "Alimentation"
+  },
+  {
+    "id": 15,
+    "title": "Consommer des protéines végétales",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 16,
+    "title": "Découvrir une nouvelle légumineuse",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 17,
+    "title": "Acheter au marché local",
+    "points": 40,
+    "category": "Alimentation"
+  },
+  {
+    "id": 18,
+    "title": "Ne pas acheter de bouteille en plastique",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 19,
+    "title": "Consommer un fruit en dessert",
+    "points": 10,
+    "category": "Alimentation"
+  },
+  {
+    "id": 20,
+    "title": "Faire son propre lait végétal",
+    "points": 50,
+    "category": "Alimentation"
+  },
+  {
+    "id": 21,
+    "title": "Manger des noix/graines au goûter",
+    "points": 10,
+    "category": "Alimentation"
+  },
+  {
+    "id": 22,
+    "title": "Refuser un emballage alimentaire",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 23,
+    "title": "Prendre un café sans gobelet jetable",
+    "points": 10,
+    "category": "Alimentation"
+  },
+  {
+    "id": 24,
+    "title": "Acheter un produit imparfait/moche",
+    "points": 10,
+    "category": "Alimentation"
+  },
+  {
+    "id": 25,
+    "title": "Faire une soupe anti-gaspi",
+    "points": 30,
+    "category": "Alimentation"
+  },
+  {
+    "id": 26,
+    "title": "Tester le tofu ou le seitan",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 27,
+    "title": "Préparer le menu de la semaine à l'avance",
+    "points": 30,
+    "category": "Alimentation"
+  },
+  {
+    "id": 28,
+    "title": "Congeler des aliments avant qu'ils périssent",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 29,
+    "title": "Acheter un produit certifié bio",
+    "points": 20,
+    "category": "Alimentation"
+  },
+  {
+    "id": 30,
+    "title": "Réduire sa consommation de fromage",
+    "points": 30,
+    "category": "Alimentation"
+  },
+  {
+    "id": 31,
+    "title": "Utiliser les transports en commun",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 32,
+    "title": "Aller au travail/école à vélo",
+    "points": 40,
+    "category": "Transport"
+  },
+  {
+    "id": 33,
+    "title": "Marcher au lieu de prendre la voiture",
+    "points": 30,
+    "category": "Transport"
+  },
+  {
+    "id": 34,
+    "title": "Faire du covoiturage",
+    "points": 40,
+    "category": "Transport"
+  },
+  {
+    "id": 35,
+    "title": "Télétravailler si possible",
+    "points": 50,
+    "category": "Transport"
+  },
+  {
+    "id": 36,
+    "title": "Privilégier le train à la voiture",
+    "points": 50,
+    "category": "Transport"
+  },
+  {
+    "id": 37,
+    "title": "Utiliser le train pour un trajet long",
+    "points": 40,
+    "category": "Transport"
+  },
+  {
+    "id": 38,
+    "title": "Prendre les escaliers au lieu de l'ascenseur",
+    "points": 10,
+    "category": "Transport"
+  },
+  {
+    "id": 39,
+    "title": "Optimiser ses déplacements en une seule sortie",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 40,
+    "title": "Essayer un nouveau mode de transport doux",
+    "points": 40,
+    "category": "Transport"
+  },
+  {
+    "id": 41,
+    "title": "Regonfler les pneus de son vélo",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 42,
+    "title": "Conduire en éco-conduite",
+    "points": 30,
+    "category": "Transport"
+  },
+  {
+    "id": 43,
+    "title": "Couper le moteur à l'arrêt",
+    "points": 10,
+    "category": "Transport"
+  },
+  {
+    "id": 44,
+    "title": "Vérifier la pression des pneus (voiture)",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 45,
+    "title": "Ne pas utiliser la climatisation en voiture",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 46,
+    "title": "Entretenir son vélo",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 47,
+    "title": "Partager son trajet sur une application",
+    "points": 50,
+    "category": "Transport"
+  },
+  {
+    "id": 48,
+    "title": "Marcher au moins 5000 pas",
+    "points": 30,
+    "category": "Transport"
+  },
+  {
+    "id": 49,
+    "title": "Prendre le métro/tram",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 50,
+    "title": "Aller faire ses courses à pied",
+    "points": 30,
+    "category": "Transport"
+  },
+  {
+    "id": 51,
+    "title": "Laisser la voiture au garage",
+    "points": 40,
+    "category": "Transport"
+  },
+  {
+    "id": 52,
+    "title": "Voyager léger",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 53,
+    "title": "Organiser un trajet à plusieurs",
+    "points": 50,
+    "category": "Transport"
+  },
+  {
+    "id": 54,
+    "title": "Privilégier les visios",
+    "points": 10,
+    "category": "Transport"
+  },
+  {
+    "id": 55,
+    "title": "Éviter les détours inutiles",
+    "points": 10,
+    "category": "Transport"
+  },
+  {
+    "id": 56,
+    "title": "Conduire à 110 km/h max sur autoroute",
+    "points": 30,
+    "category": "Transport"
+  },
+  {
+    "id": 57,
+    "title": "Planifier des vacances sans avion",
+    "points": 50,
+    "category": "Transport"
+  },
+  {
+    "id": 58,
+    "title": "Utiliser une trottinette pour un court trajet",
+    "points": 20,
+    "category": "Transport"
+  },
+  {
+    "id": 59,
+    "title": "Rejoindre un groupe de covoiturage domicile-travail",
+    "points": 40,
+    "category": "Transport"
+  },
+  {
+    "id": 60,
+    "title": "Couper la climatisation avant d'arriver à destination",
+    "points": 10,
+    "category": "Transport"
+  },
+  {
+    "id": 61,
+    "title": "Éteindre les appareils en veille",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 62,
+    "title": "Réduire la température de 1°C",
+    "points": 40,
+    "category": "Énergie"
+  },
+  {
+    "id": 63,
+    "title": "Éteindre la box internet la nuit",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 64,
+    "title": "Prendre une douche de moins de 5 minutes",
+    "points": 30,
+    "category": "Énergie"
+  },
+  {
+    "id": 65,
+    "title": "Laver son linge à 30°C",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 66,
+    "title": "Faire sécher le linge à l'air libre",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 67,
+    "title": "Dégivrer le congélateur/frigo",
+    "points": 50,
+    "category": "Énergie"
+  },
+  {
+    "id": 68,
+    "title": "Mettre un couvercle pour bouillir de l'eau",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 69,
+    "title": "Privilégier la lumière naturelle",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 70,
+    "title": "Remplacer une ampoule par une LED",
+    "points": 30,
+    "category": "Énergie"
+  },
+  {
+    "id": 71,
+    "title": "Ne pas allumer la climatisation",
+    "points": 30,
+    "category": "Énergie"
+  },
+  {
+    "id": 72,
+    "title": "Éteindre la multiprise le soir",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 73,
+    "title": "Charger son téléphone en mode avion",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 74,
+    "title": "Ne garder que les mails importants",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 75,
+    "title": "Baisser la luminosité de ses écrans",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 76,
+    "title": "Fermer les volets la nuit pour isoler",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 77,
+    "title": "Éteindre la lumière en quittant une pièce",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 78,
+    "title": "Utiliser le mode éco du lave-vaisselle",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 79,
+    "title": "Attendre que le lave-vaisselle soit plein",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 80,
+    "title": "Optimiser le rangement du frigo",
+    "points": 40,
+    "category": "Énergie"
+  },
+  {
+    "id": 81,
+    "title": "Penser à purger les radiateurs",
+    "points": 50,
+    "category": "Énergie"
+  },
+  {
+    "id": 82,
+    "title": "Regarder des vidéos en basse résolution",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 83,
+    "title": "Se désabonner de 5 newsletters",
+    "points": 30,
+    "category": "Énergie"
+  },
+  {
+    "id": 84,
+    "title": "Fermer les onglets inactifs",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 85,
+    "title": "Nettoyer les filtres de ses appareils",
+    "points": 40,
+    "category": "Énergie"
+  },
+  {
+    "id": 86,
+    "title": "Faire une lessive à pleine charge uniquement",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 87,
+    "title": "Débrancher les chargeurs non utilisés",
+    "points": 10,
+    "category": "Énergie"
+  },
+  {
+    "id": 88,
+    "title": "Limiter l'usage du sèche-cheveux",
+    "points": 20,
+    "category": "Énergie"
+  },
+  {
+    "id": 89,
+    "title": "Installer un économiseur d'eau sur le robinet",
+    "points": 40,
+    "category": "Énergie"
+  },
+  {
+    "id": 90,
+    "title": "Faire un bilan de sa consommation énergétique",
+    "points": 40,
+    "category": "Énergie"
+  },
+  {
+    "id": 91,
+    "title": "Zéro plastique à usage unique",
+    "points": 50,
+    "category": "Consommation"
+  },
+  {
+    "id": 92,
+    "title": "Utiliser une gourde",
+    "points": 10,
+    "category": "Consommation"
+  },
+  {
+    "id": 93,
+    "title": "Acheter un vêtement de seconde main",
+    "points": 40,
+    "category": "Consommation"
+  },
+  {
+    "id": 94,
+    "title": "Refuser un ticket de caisse",
+    "points": 10,
+    "category": "Consommation"
+  },
+  {
+    "id": 95,
+    "title": "Donner un objet non utilisé",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 96,
+    "title": "Réparer un objet au lieu de jeter",
+    "points": 50,
+    "category": "Consommation"
+  },
+  {
+    "id": 97,
+    "title": "Faire son propre produit d'entretien",
+    "points": 50,
+    "category": "Consommation"
+  },
+  {
+    "id": 98,
+    "title": "Utiliser un sac en tissu pour les courses",
+    "points": 10,
+    "category": "Consommation"
+  },
+  {
+    "id": 99,
+    "title": "Refuser les goodies inutiles",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 100,
+    "title": "Acheter un livre d'occasion",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 101,
+    "title": "Utiliser un savon solide",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 102,
+    "title": "Utiliser un shampoing solide",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 103,
+    "title": "Utiliser des carrés démaquillants lavables",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 104,
+    "title": "Emballer un cadeau avec du tissu",
+    "points": 40,
+    "category": "Consommation"
+  },
+  {
+    "id": 105,
+    "title": "Éviter la fast-fashion",
+    "points": 50,
+    "category": "Consommation"
+  },
+  {
+    "id": 106,
+    "title": "Emprunter à la bibliothèque",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 107,
+    "title": "Louer un outil plutôt que l'acheter",
+    "points": 40,
+    "category": "Consommation"
+  },
+  {
+    "id": 108,
+    "title": "Mettre un stop-pub sur sa boîte",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 109,
+    "title": "Recycler un déchet électronique",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 110,
+    "title": "Trier tous ses emballages",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 111,
+    "title": "Réutiliser un bocal en verre",
+    "points": 10,
+    "category": "Consommation"
+  },
+  {
+    "id": 112,
+    "title": "Construire/Réaliser un objet soi-même",
+    "points": 50,
+    "category": "Consommation"
+  },
+  {
+    "id": 113,
+    "title": "Participer à une brocante",
+    "points": 40,
+    "category": "Consommation"
+  },
+  {
+    "id": 114,
+    "title": "Nettoyer sa boîte mail (supprimer 50 mails)",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 115,
+    "title": "Acheter un appareil électronique reconditionné",
+    "points": 40,
+    "category": "Consommation"
+  },
+  {
+    "id": 116,
+    "title": "Échanger un objet avec un voisin ou un ami",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 117,
+    "title": "Comparer l'impact carbone avant un achat",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 118,
+    "title": "Choisir la livraison lente ou groupée",
+    "points": 20,
+    "category": "Consommation"
+  },
+  {
+    "id": 119,
+    "title": "Utiliser un filtre à eau plutôt que des bouteilles",
+    "points": 30,
+    "category": "Consommation"
+  },
+  {
+    "id": 120,
+    "title": "Trier et donner ses vêtements au lieu de jeter",
+    "points": 30,
+    "category": "Consommation"
+  }
+]

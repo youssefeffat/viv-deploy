@@ -1,0 +1,1956 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Viveris Carbone API",
+    "description": "FastAPI backend for Viveris Carbone project",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Create a new user account",
+        "description": "Create a new user with `email`, `user_name` and `password`. Returns the created user (no password).",
+        "operationId": "signup_auth_signup_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignUpResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Login and receive a JWT",
+        "description": "Authenticate with `email` and `password`. Returns an access token on success.",
+        "operationId": "login_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logout user",
+        "description": "Logout the current user. Note: Since we use stateless JWTs, the client must discard the token.",
+        "operationId": "logout_auth_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/me": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get user dashboard data",
+        "description": "Returns user profile, total emissions, category breakdown, points, and achievements.",
+        "operationId": "get_me_api_users_me_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDashboardResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Delete user account",
+        "operationId": "delete_user_api_users_me_delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "hard",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Hard"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/me/password": {
+      "put": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Change user password",
+        "operationId": "change_password_api_users_me_password_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordChangeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/me/stats": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get advanced user stats",
+        "operationId": "get_advanced_stats_api_users_me_stats_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvancedUserStatsResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/me/stats/recalculate": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Force recalculate stats",
+        "operationId": "recalculate_stats_api_users_me_stats_recalculate_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericActionResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/me/achievements/{achievementId}/unlock": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Manually unlock an achievement",
+        "operationId": "unlock_achievement_api_users_me_achievements__achievementId__unlock_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "achievementId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Achievementid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/quiz/questions": {
+      "get": {
+        "tags": [
+          "emissions"
+        ],
+        "summary": "Get all quiz questions",
+        "description": "Returns the full list of onboarding quiz questions and their options. Publicly accessible.",
+        "operationId": "get_quiz_questions_api_quiz_questions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/QuizQuestion"
+                  },
+                  "type": "array",
+                  "title": "Response Get Quiz Questions Api Quiz Questions Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/emissions/save": {
+      "post": {
+        "tags": [
+          "emissions"
+        ],
+        "summary": "Save user footprint predictions",
+        "description": "Calculates the true footprint based on submitted answers and saves it.",
+        "operationId": "save_emissions_api_emissions_save_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmissionsSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmissionsSaveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/emissions/category": {
+      "put": {
+        "tags": [
+          "emissions"
+        ],
+        "summary": "Recalculate a specific category footprint",
+        "description": "Calculates a new total for a specific category and maintains history.",
+        "operationId": "update_category_emissions_api_emissions_category_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryUpdateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/challenges/recommendations": {
+      "get": {
+        "tags": [
+          "gamification"
+        ],
+        "summary": "Get recommended challenges",
+        "description": "Returns a list of challenges recommended for the user, including completion status.",
+        "operationId": "get_recommendations_api_challenges_recommendations_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ChallengeResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Get Recommendations Api Challenges Recommendations Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/challenges/{challenge_id}/toggle": {
+      "post": {
+        "tags": [
+          "gamification"
+        ],
+        "summary": "Toggle a challenge completion",
+        "description": "Marks a challenge as completed or uncompleted. Awards or removes points and updates tree planting progress.",
+        "operationId": "toggle_challenge_api_challenges__challenge_id__toggle_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "challenge_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Challenge Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleChallengeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToggleChallengeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/challenges": {
+      "post": {
+        "tags": [
+          "gamification"
+        ],
+        "summary": "Create a custom challenge",
+        "description": "Creates a new custom challenge. Points must be between 5 and 500.",
+        "operationId": "create_challenge_api_challenges_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChallengeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateChallengeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/community/leaderboard": {
+      "get": {
+        "tags": [
+          "community"
+        ],
+        "summary": "Get Community Leaderboard",
+        "description": "Returns the list of top users sorted by points, including their rank and calculated percentage for the podium.",
+        "operationId": "get_leaderboard_api_community_leaderboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/LeaderboardEntry"
+                  },
+                  "type": "array",
+                  "title": "Response Get Leaderboard Api Community Leaderboard Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/me/friends": {
+      "get": {
+        "tags": [
+          "friends"
+        ],
+        "summary": "Get user's friends",
+        "description": "Returns the list of friends for the currently authenticated user.",
+        "operationId": "get_friends_api_users_me_friends_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FriendResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Get Friends Api Users Me Friends Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/{friend_id}/friends": {
+      "post": {
+        "tags": [
+          "friends"
+        ],
+        "summary": "Send a friend request",
+        "description": "Sends a friend request to another user. If they already requested you, it auto-accepts.",
+        "operationId": "send_friend_request_api_users__friend_id__friends_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Friend Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_send_friend_request_api_users__friend_id__friends_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "friends"
+        ],
+        "summary": "Remove a friend or cancel request",
+        "operationId": "delete_friend_api_users__friend_id__friends_delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Friend Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{friend_id}/friends/accept": {
+      "post": {
+        "tags": [
+          "friends"
+        ],
+        "summary": "Accept a friend request",
+        "operationId": "accept_friend_request_api_users__friend_id__friends_accept_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Friend Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Requestid"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{friend_id}/friends/decline": {
+      "post": {
+        "tags": [
+          "friends"
+        ],
+        "summary": "Decline a friend request",
+        "operationId": "decline_friend_request_api_users__friend_id__friends_decline_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "friend_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Friend Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Reason"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Test Api",
+        "operationId": "test_api__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Health check endpoint",
+        "operationId": "health_check_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hello": {
+      "get": {
+        "summary": "Hello World",
+        "description": "Hello world endpoint",
+        "operationId": "hello_world_api_hello_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Achievement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "unlocked": {
+            "type": "boolean",
+            "title": "Unlocked"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "unlocked"
+        ],
+        "title": "Achievement"
+      },
+      "AdvancedUserStatsResponse": {
+        "properties": {
+          "co2ThisYear": {
+            "type": "number",
+            "title": "Co2Thisyear"
+          },
+          "co2LastYear": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Co2Lastyear",
+            "default": 0
+          },
+          "co2ReducedThisYear": {
+            "type": "number",
+            "title": "Co2Reducedthisyear"
+          },
+          "challengesCompleted": {
+            "type": "integer",
+            "title": "Challengescompleted"
+          },
+          "bestStreak": {
+            "type": "integer",
+            "title": "Beststreak"
+          },
+          "currentStreak": {
+            "type": "integer",
+            "title": "Currentstreak"
+          },
+          "badges": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Badges"
+          }
+        },
+        "type": "object",
+        "required": [
+          "co2ThisYear",
+          "co2ReducedThisYear",
+          "challengesCompleted",
+          "bestStreak",
+          "currentStreak",
+          "badges"
+        ],
+        "title": "AdvancedUserStatsResponse"
+      },
+      "AnswerItem": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "co2": {
+            "type": "number",
+            "title": "Co2"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "value",
+          "co2"
+        ],
+        "title": "AnswerItem"
+      },
+      "Body_send_friend_request_api_users__friend_id__friends_post": {
+        "properties": {
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "title": "Body_send_friend_request_api_users__friend_id__friends_post"
+      },
+      "CategoryUpdateRequest": {
+        "properties": {
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "answers": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AnswerItem"
+            },
+            "type": "object",
+            "title": "Answers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "category",
+          "answers"
+        ],
+        "title": "CategoryUpdateRequest"
+      },
+      "CategoryUpdateResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "newCategoryTotal": {
+            "type": "number",
+            "title": "Newcategorytotal"
+          },
+          "categoryEmissions": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Categoryemissions"
+          },
+          "updatedTotalInTons": {
+            "type": "number",
+            "title": "Updatedtotalintons"
+          },
+          "savedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Savedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "category",
+          "newCategoryTotal",
+          "categoryEmissions",
+          "updatedTotalInTons",
+          "savedAt"
+        ],
+        "title": "CategoryUpdateResponse"
+      },
+      "ChallengeResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "points": {
+            "type": "integer",
+            "title": "Points"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "completed": {
+            "type": "boolean",
+            "title": "Completed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "points",
+          "category",
+          "completed"
+        ],
+        "title": "ChallengeResponse"
+      },
+      "CreateChallengeRequest": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "points": {
+            "type": "integer",
+            "title": "Points"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "category",
+          "points"
+        ],
+        "title": "CreateChallengeRequest"
+      },
+      "CreateChallengeResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "challenge": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Challenge"
+          }
+        },
+        "type": "object",
+        "required": [
+          "challenge"
+        ],
+        "title": "CreateChallengeResponse"
+      },
+      "EmissionsSaveRequest": {
+        "properties": {
+          "quizResult": {
+            "$ref": "#/components/schemas/QuizResultPayload"
+          },
+          "userPredictions": {
+            "$ref": "#/components/schemas/UserPredictions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "quizResult",
+          "userPredictions"
+        ],
+        "title": "EmissionsSaveRequest"
+      },
+      "EmissionsSaveResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "emissionId": {
+            "type": "string",
+            "title": "Emissionid"
+          },
+          "quizResult": {
+            "$ref": "#/components/schemas/QuizResultResponse"
+          },
+          "categoryEmissions": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Categoryemissions"
+          },
+          "targetCO2": {
+            "type": "number",
+            "title": "Targetco2"
+          },
+          "savedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Savedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "emissionId",
+          "quizResult",
+          "categoryEmissions",
+          "targetCO2",
+          "savedAt"
+        ],
+        "title": "EmissionsSaveResponse"
+      },
+      "FriendActionResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "friendId": {
+            "type": "string",
+            "title": "Friendid"
+          },
+          "totalFriends": {
+            "type": "integer",
+            "title": "Totalfriends",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "friendId"
+        ],
+        "title": "FriendActionResponse"
+      },
+      "FriendResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "avatar": {
+            "type": "string",
+            "title": "Avatar"
+          },
+          "points": {
+            "type": "integer",
+            "title": "Points"
+          },
+          "trees": {
+            "type": "integer",
+            "title": "Trees"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "avatar",
+          "points",
+          "trees",
+          "status"
+        ],
+        "title": "FriendResponse"
+      },
+      "GenericActionResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "message"
+        ],
+        "title": "GenericActionResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "message"
+        ],
+        "title": "HealthResponse"
+      },
+      "LeaderboardEntry": {
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "title": "Rank"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "avatar": {
+            "type": "string",
+            "title": "Avatar"
+          },
+          "points": {
+            "type": "integer",
+            "title": "Points"
+          },
+          "trees": {
+            "type": "integer",
+            "title": "Trees"
+          },
+          "percentage": {
+            "type": "integer",
+            "title": "Percentage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank",
+          "name",
+          "avatar",
+          "points",
+          "trees",
+          "percentage"
+        ],
+        "title": "LeaderboardEntry"
+      },
+      "LoginRequest": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginRequest",
+        "example": {
+          "email": "alice@example.com",
+          "password": "strong_password_123"
+        }
+      },
+      "LoginResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type",
+            "default": "bearer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token"
+        ],
+        "title": "LoginResponse",
+        "example": {
+          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+          "token_type": "bearer"
+        }
+      },
+      "LogoutResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "LogoutResponse",
+        "example": {
+          "message": "Successfully logged out"
+        }
+      },
+      "MessageResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "MessageResponse"
+      },
+      "PasswordChangeRequest": {
+        "properties": {
+          "currentPassword": {
+            "type": "string",
+            "title": "Currentpassword"
+          },
+          "newPassword": {
+            "type": "string",
+            "title": "Newpassword"
+          }
+        },
+        "type": "object",
+        "required": [
+          "currentPassword",
+          "newPassword"
+        ],
+        "title": "PasswordChangeRequest"
+      },
+      "QuizOption": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "co2": {
+            "type": "number",
+            "title": "Co2"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "value",
+          "co2"
+        ],
+        "title": "QuizOption"
+      },
+      "QuizQuestion": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/QuizOption"
+            },
+            "type": "array",
+            "title": "Options"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "question",
+          "options"
+        ],
+        "title": "QuizQuestion"
+      },
+      "QuizResult": {
+        "properties": {
+          "totalInTons": {
+            "type": "number",
+            "title": "Totalintons"
+          },
+          "categoryBreakdown": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Categorybreakdown"
+          }
+        },
+        "type": "object",
+        "required": [
+          "totalInTons",
+          "categoryBreakdown"
+        ],
+        "title": "QuizResult"
+      },
+      "QuizResultPayload": {
+        "properties": {
+          "totalInTons": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "title": "Totalintons"
+          },
+          "answers": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AnswerItem"
+            },
+            "type": "object",
+            "title": "Answers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "totalInTons",
+          "answers"
+        ],
+        "title": "QuizResultPayload"
+      },
+      "QuizResultResponse": {
+        "properties": {
+          "totalInTons": {
+            "type": "number",
+            "title": "Totalintons"
+          },
+          "categoryBreakdown": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Categorybreakdown"
+          }
+        },
+        "type": "object",
+        "required": [
+          "totalInTons",
+          "categoryBreakdown"
+        ],
+        "title": "QuizResultResponse"
+      },
+      "SignUpRequest": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8,
+            "title": "Password",
+            "description": "Password (minimum 8 characters)"
+          },
+          "user_name": {
+            "type": "string",
+            "minLength": 3,
+            "title": "User Name",
+            "description": "Unique username"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "user_name"
+        ],
+        "title": "SignUpRequest",
+        "example": {
+          "email": "alice@example.com",
+          "password": "strong_password_123",
+          "user_name": "alice"
+        }
+      },
+      "SignUpResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "user_name"
+        ],
+        "title": "SignUpResponse",
+        "example": {
+          "email": "alice@example.com",
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "user_name": "alice"
+        }
+      },
+      "ToggleChallengeRequest": {
+        "properties": {
+          "completed": {
+            "type": "boolean",
+            "title": "Completed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "completed"
+        ],
+        "title": "ToggleChallengeRequest"
+      },
+      "ToggleChallengeResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "challengeId": {
+            "type": "string",
+            "title": "Challengeid"
+          },
+          "completed": {
+            "type": "boolean",
+            "title": "Completed"
+          },
+          "pointsDelta": {
+            "type": "integer",
+            "title": "Pointsdelta"
+          },
+          "totalPoints": {
+            "type": "integer",
+            "title": "Totalpoints"
+          },
+          "treesPlanted": {
+            "type": "integer",
+            "title": "Treesplanted"
+          },
+          "treeProgress": {
+            "type": "integer",
+            "title": "Treeprogress"
+          }
+        },
+        "type": "object",
+        "required": [
+          "challengeId",
+          "completed",
+          "pointsDelta",
+          "totalPoints",
+          "treesPlanted",
+          "treeProgress"
+        ],
+        "title": "ToggleChallengeResponse"
+      },
+      "UserObject": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "firstName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Firstname"
+          },
+          "lastName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lastname"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email"
+        ],
+        "title": "UserObject"
+      },
+      "UserPredictions": {
+        "properties": {
+          "highestConsumption": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Highestconsumption"
+          },
+          "flexibility": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Flexibility"
+          }
+        },
+        "type": "object",
+        "required": [
+          "flexibility"
+        ],
+        "title": "UserPredictions"
+      },
+      "UserProfileDashboardResponse": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserObject"
+          },
+          "quizResult": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QuizResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "categoryEmissions": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Categoryemissions"
+          },
+          "points": {
+            "type": "integer",
+            "title": "Points"
+          },
+          "treesPlanted": {
+            "type": "integer",
+            "title": "Treesplanted"
+          },
+          "achievements": {
+            "items": {
+              "$ref": "#/components/schemas/Achievement"
+            },
+            "type": "array",
+            "title": "Achievements"
+          },
+          "streak": {
+            "type": "integer",
+            "title": "Streak"
+          },
+          "bestStreak": {
+            "type": "integer",
+            "title": "Beststreak"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "points",
+          "treesPlanted",
+          "achievements",
+          "streak",
+          "bestStreak"
+        ],
+        "title": "UserProfileDashboardResponse",
+        "example": {
+          "achievements": [
+            {
+              "id": "first-tree",
+              "name": "Premier arbre",
+              "unlocked": true
+            }
+          ],
+          "bestStreak": 18,
+          "categoryEmissions": {
+            "Alimentation": 1.2,
+            "Consommation": 0.7,
+            "Transport": 1.8,
+            "Énergie": 1.5
+          },
+          "points": 1240,
+          "quizResult": {
+            "categoryBreakdown": {
+              "Alimentation": 1.2,
+              "Consommation": 0.7,
+              "Transport": 1.8,
+              "Énergie": 1.5
+            },
+            "totalInTons": 2.8
+          },
+          "streak": 12,
+          "treesPlanted": 2,
+          "user": {
+            "email": "jean.dupont@example.com",
+            "firstName": "Jean",
+            "id": "uuid",
+            "lastName": "Dupont"
+          }
+        }
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

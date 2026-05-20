@@ -1,0 +1,235 @@
+﻿import { useState } from "react";
+import { useNavigate } from "react-router";
+import { ArrowLeft, ArrowRight, Leaf } from "lucide-react";
+import { motion } from "motion/react";
+
+const questions = [
+  {
+    id: 1,
+    category: "Transport",
+    question: "Combien de kilomÃ¨tres parcourez-vous en voiture par semaine ?",
+    options: [
+      { label: "0-20 km", value: 10, co2: 20 },
+      { label: "20-50 km", value: 35, co2: 70 },
+      { label: "50-100 km", value: 75, co2: 150 },
+      { label: "Plus de 100 km", value: 150, co2: 300 },
+      { label: "Je n'utilise pas de voiture", value: 0, co2: 0 },
+    ],
+  },
+  {
+    id: 2,
+    category: "Transport",
+    question: "Combien de vols en avion prenez-vous par an ?",
+    options: [
+      { label: "Aucun", value: 0, co2: 0 },
+      { label: "1-2 vols courts courriers", value: 1, co2: 400 },
+      { label: "3-5 vols courts courriers", value: 3, co2: 800 },
+      { label: "1-2 vols longs courriers", value: 2, co2: 2000 },
+      { label: "Plus de 5 vols par an", value: 6, co2: 3000 },
+    ],
+  },
+  {
+    id: 3,
+    category: "Alimentation",
+    question: "Combien de fois par semaine consommez-vous de la viande rouge ?",
+    options: [
+      { label: "Jamais", value: 0, co2: 0 },
+      { label: "1-2 fois", value: 1, co2: 100 },
+      { label: "3-4 fois", value: 3, co2: 200 },
+      { label: "5-7 fois", value: 5, co2: 350 },
+      { label: "Plus de 7 fois", value: 8, co2: 500 },
+    ],
+  },
+  {
+    id: 4,
+    category: "Alimentation",
+    question: "Achetez-vous principalement des produits locaux et de saison ?",
+    options: [
+      { label: "Toujours", value: 5, co2: 50 },
+      { label: "Souvent", value: 3, co2: 150 },
+      { label: "Parfois", value: 2, co2: 250 },
+      { label: "Rarement", value: 1, co2: 350 },
+      { label: "Jamais", value: 0, co2: 450 },
+    ],
+  },
+  {
+    id: 5,
+    category: "Ã‰nergie",
+    question: "Quelle est la taille de votre logement ?",
+    options: [
+      { label: "Studio (moins de 30mÂ²)", value: 25, co2: 400 },
+      { label: "T2 (30-50mÂ²)", value: 40, co2: 600 },
+      { label: "T3 (50-80mÂ²)", value: 65, co2: 900 },
+      { label: "T4/T5 (80-120mÂ²)", value: 100, co2: 1200 },
+      { label: "Maison (plus de 120mÂ²)", value: 150, co2: 1800 },
+    ],
+  },
+  {
+    id: 6,
+    category: "Ã‰nergie",
+    question: "Utilisez-vous des Ã‰nergies renouvelables ?",
+    options: [
+      { label: "Oui, 100% renouvelable", value: 5, co2: 0 },
+      { label: "Partiellement", value: 3, co2: 200 },
+      { label: "Non", value: 0, co2: 400 },
+      { label: "Je ne sais pas", value: 1, co2: 300 },
+    ],
+  },
+  {
+    id: 7,
+    category: "Consommation",
+    question: "Ã© quelle frÃ©quence achetez-vous des vÃªtements neufs ?",
+    options: [
+      { label: "Rarement (moins de 5 par an)", value: 1, co2: 50 },
+      { label: "Occasionnellement (5-10 par an)", value: 2, co2: 150 },
+      { label: "RÃ©guliÃ¨rement (10-20 par an)", value: 3, co2: 300 },
+      { label: "Souvent (plus de 20 par an)", value: 4, co2: 500 },
+    ],
+  },
+  {
+    id: 8,
+    category: "Consommation",
+    question: "Combien d'appareils Ã©lectroniques achetez-vous par an ?",
+    options: [
+      { label: "Aucun", value: 0, co2: 0 },
+      { label: "1 appareil", value: 1, co2: 100 },
+      { label: "2-3 appareils", value: 2, co2: 250 },
+      { label: "Plus de 3 appareils", value: 4, co2: 500 },
+    ],
+  },
+];
+
+export function QuizPage() {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, any>>({});
+  const navigate = useNavigate();
+
+  const handleAnswer = (option: any) => {
+    setAnswers({ ...answers, [questions[currentQuestion].id]: option });
+  };
+
+  const handleNext = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      // Calculate total CO2 and navigate to prediction page
+      const totalCO2 = Object.values(answers).reduce(
+        (sum: number, ans: any) => sum + (ans.co2 || 0),
+        0
+      );
+      const totalInTons = (totalCO2 / 1000).toFixed(1);
+      
+      // Store result in sessionStorage
+      sessionStorage.setItem("quizResult", JSON.stringify({ totalInTons, answers }));
+      navigate("/prediction");
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const currentQ = questions[currentQuestion];
+  const selectedAnswer = answers[currentQ.id];
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--viv-beige)' }}>
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6">
+        <div className="flex items-center gap-2">
+            <img src="/src/Pack_charte_graphique/Logos/Logos_Viveris/Avec%20signature/Viveris%20-%20Logo%20-%20Baseline%20-%20RVB%20-%20Noir.png" alt="Viveris Carbone" className="h-20 md:h-24 object-contain" />
+        </div>
+      </header>
+      {/* Progress Bar */}
+      <div className="container mx-auto px-4 mb-8">
+        <div className="max-w-2xl mx-auto">
+          <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--viv-red-light)', opacity: 0.3 }}>
+            <motion.div
+              className="h-full"
+              style={{ backgroundColor: 'var(--viv-secondary)' }}
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+          <p className="text-sm mt-2 text-center" style={{ color: '#64748B' }}>
+            Question {currentQuestion + 1} sur {questions.length}
+          </p>
+        </div>
+      </div>
+
+      {/* Question */}
+      <main className="container mx-auto px-4 pb-20">
+        <motion.div
+          key={currentQuestion}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.3 }}
+          className="max-w-2xl mx-auto"
+        >
+          <div className="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-8">
+            <div className="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4" style={{ backgroundColor: 'var(--viv-red-light)', color: 'var(--viv-navy)', opacity: 0.8 }}>
+              {currentQ.category}
+            </div>
+
+            <h2 className="text-2xl mb-8" style={{ color: 'var(--viv-navy)' }}>
+              {currentQ.question}
+            </h2>
+
+            <div className="space-y-3">
+              {currentQ.options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswer(option)}
+                  className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                    selectedAnswer?.label === option.label
+                      ? "shadow-lg"
+                      : "bg-white hover:shadow-md"
+                  }`}
+                  style={{
+                    borderColor: selectedAnswer?.label === option.label ? 'var(--viv-red)' : '#E2E8F0',
+                    backgroundColor: selectedAnswer?.label === option.label ? 'var(--viv-red-light)' : 'white',
+                    opacity: selectedAnswer?.label === option.label ? 0.3 : 1,
+                  }}
+                >
+                  <span style={{ color: 'var(--viv-navy)' }}>{option.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-between mt-8">
+            <button
+              onClick={handlePrevious}
+              disabled={currentQuestion === 0}
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-white font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              style={{ color: 'var(--viv-secondary)' }}
+              onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = 'var(--viv-red-light)', e.currentTarget.style.opacity = '0.3')}
+              
+            >
+              <ArrowLeft className="w-5 h-5" />
+              PrÃ©cÃ©dent
+            </button>
+
+            <button
+              onClick={handleNext}
+              disabled={!selectedAnswer}
+              className="flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              style={{ backgroundColor: selectedAnswer ? 'var(--viv-red)' : '#CBD5E1' }}
+              onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = 'var(--viv-red-dark)')}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selectedAnswer ? 'var(--viv-red)' : '#CBD5E1'}
+            >
+              {currentQuestion === questions.length - 1 ? "Voir le rÃ©sultat" : "Suivant"}
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </motion.div>
+      </main>
+    </div>
+  );
+}
